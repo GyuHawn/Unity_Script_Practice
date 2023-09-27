@@ -5,11 +5,17 @@ using UnityEngine;
 
 public class MenuButton : MonoBehaviour
 {
+    private MoveScript mScript;
+
     public GameObject menuTab;
     public GameObject moveTab;
 
     public GameObject explanation;
 
+    private void Start()
+    {
+        mScript = GameObject.Find("Player").GetComponent<MoveScript>();
+    }
 
     public void MenuBt()
     {
@@ -32,6 +38,25 @@ public class MenuButton : MonoBehaviour
         {
             explanation.SetActive(!explanation.activeSelf);
         }
+    }
+
+
+    //---------------------------------
+    public void MoveBtStart()
+    {
+        mScript.mNum = 1;
+    }
+    public void TurnBtStart()
+    {
+        mScript.mNum = 2;
+    }
+    public void JumpBtStart()
+    {
+        mScript.mNum = 3;
+    }
+    public void MouseRoteStart()
+    {
+        mScript.mNum = 4;
     }
 
 }
