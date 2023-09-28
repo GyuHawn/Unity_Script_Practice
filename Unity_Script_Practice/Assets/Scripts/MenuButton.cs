@@ -46,11 +46,11 @@ public class MenuButton : MonoBehaviour
     {
         mScript.mNum = 1;
     }
-    public void TurnBtStart()
+    public void JumpBtStart()
     {
         mScript.mNum = 2;
     }
-    public void JumpBtStart()
+    public void TurnBtStart()
     {
         mScript.mNum = 3;
     }
