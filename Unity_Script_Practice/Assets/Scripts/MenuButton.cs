@@ -9,10 +9,12 @@ public class MenuButton : MonoBehaviour
 
     public GameObject menuTab;
     public GameObject moveTab;
+    public GameObject clickTab;
+    public GameObject objTab;
 
     public GameObject explanation;
 
-    private void Start()
+    void Start()
     {
         mScript = GameObject.Find("Player").GetComponent<MoveScript>();
     }
@@ -24,11 +26,45 @@ public class MenuButton : MonoBehaviour
             menuTab.SetActive(!menuTab.activeSelf);
         }
     }
-    public void MoveuBt()
+    public void MoveBt()
     {
+        if (clickTab != null && clickTab.activeSelf || objTab != null && objTab.activeSelf)
+        {
+            clickTab.SetActive(false);
+            objTab.SetActive(false);
+        }
+
         if (moveTab != null)
         {
             moveTab.SetActive(!moveTab.activeSelf);
+        }
+    }
+
+    public void ClickBt()
+    {
+        if (moveTab != null && moveTab.activeSelf || objTab != null && objTab.activeSelf)
+        {
+            moveTab.SetActive(false);
+            objTab.SetActive(false);
+        }
+
+        if (clickTab != null)
+        {
+            clickTab.SetActive(!clickTab.activeSelf);
+        }
+    }
+
+    public void ObjectBt()
+    {
+        if (moveTab != null && moveTab.activeSelf || clickTab != null && clickTab.activeSelf)
+        {
+            moveTab.SetActive(false);
+            clickTab.SetActive(false);
+        }
+
+        if (objTab != null)
+        {
+            objTab.SetActive(!objTab.activeSelf);
         }
     }
 

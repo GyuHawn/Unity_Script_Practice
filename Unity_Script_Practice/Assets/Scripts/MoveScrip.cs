@@ -91,11 +91,10 @@ public class MoveScript : MonoBehaviour
 
     private void Rotate()
     {
-        if (moveDirection != Vector3.zero)
+        if (moveDirection != Vector3.zero && vAxis >= 0)
         {
             Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
-
         }
     }
 
