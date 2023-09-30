@@ -3309,7 +3309,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2686890238580842728, guid: 7856c197eb4c77840878eba92e1c48b7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2686890238580842728, guid: 7856c197eb4c77840878eba92e1c48b7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4329,7 +4329,7 @@ GameObject:
   - component: {fileID: 799830941}
   - component: {fileID: 799830940}
   - component: {fileID: 799830939}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7850,7 +7850,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1430990373
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8386,7 +8386,7 @@ GameObject:
   - component: {fileID: 1484760820}
   - component: {fileID: 1484760819}
   - component: {fileID: 1484760822}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8530,6 +8530,7 @@ MonoBehaviour:
   jumpForce: 5
   rotateSpeed: 200
   mouseSensitivity: 100
+  isCameraFixed: 1
 --- !u!54 &1487927985
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9295,6 +9296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cNum: 0
+  speed: 1
   google: {fileID: 873919761}
 --- !u!1 &1532163382
 GameObject:

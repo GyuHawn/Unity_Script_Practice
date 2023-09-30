@@ -16,29 +16,43 @@ public class MoveScript : MonoBehaviour
 
     public float mNum;
 
-    public float moveSpeed = 5f;
-    public float jumpForce = 6f;
-    public float rotateSpeed = 200f;
+    public float moveSpeed;
+    public float jumpForce;
+    public float rotateSpeed;
 
-    private Vector3 moveDirection;
+    private Vector3 moveVec;
 
     private Animator anim;
     private Rigidbody rigid;
 
     // 마우스 회전
     float yRotation;
-    public float mouseSensitivity = 700f;
+    public float mouseSensitivity;
+
+    public bool isCameraFixed = true;
 
     void Awake()
     {
         anim = GetComponentInChildren<Animator>();
         rigid = GetComponentInChildren<Rigidbody>();
     }
+    void Start()
+    {
+        moveSpeed = 5f;
+        jumpForce = 6f;
+        rotateSpeed = 200f;
+
+        mouseSensitivity = 700f;
+    }
 
     void Update()
     {
         GetInput();
-        CameraMove();
+
+        if (isCameraFixed)
+        {
+            CameraMove();
+        }
 
         if (mNum >= 1)
         {
@@ -68,42 +82,42 @@ public class MoveScript : MonoBehaviour
         jDown = Input.GetButtonDown("Jump");
 
 
-        Vector3 camForward = Camera.main.transform.forward;
-        Vector3 camRight = Camera.main.transform.right;
+        Vector3 vCam = Camera.main.transform.forward;
+        Vector3 hCam = Camera.main.transform.right;
 
-        camForward.y = 0f;
-        camRight.y = 0f;
+        vCam.y = 0f;
+        hCam.y = 0f;
 
-        camForward.Normalize();
-        camRight.Normalize();
+        vCam.Normalize();
+        hCam.Normalize();
 
-        moveDirection = (camForward * vAxis + camRight * hAxis).normalized;
+        moveVec = (vCam * vAxis + hCam * hAxis).normalized;
 
         yRotation += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
     }
 
     private void Move()
     {
-        transform.position += moveDirection * moveSpeed * Time.deltaTime;
+        transform.position += moveVec * moveSpeed * Time.deltaTime;
 
-        anim.SetBool("isWalk", moveDirection != Vector3.zero);
+        anim.SetBool("isWalk", moveVec != Vector3.zero);
 
     }
 
     private void Rotate()
     {
-        if (moveDirection != Vector3.zero && vAxis >= 0)
+        if (moveVec != Vector3.zero && vAxis >= 0)
         {
-            Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
+            Quaternion moveRotate = Quaternion.LookRotation(moveVec, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, moveRotate, rotateSpeed * Time.deltaTime);
         }
     }
 
     private void MouseRotate()
     {
         //마우스 회전
-        Quaternion yQuaternion = Quaternion.Euler(0f, yRotation, 0f);
-        transform.rotation = Quaternion.Lerp(transform.rotation, yQuaternion, rotateSpeed * Time.deltaTime);
+        Quaternion mouseYRotate = Quaternion.Euler(0f, yRotation, 0f);
+        transform.rotation = Quaternion.Lerp(transform.rotation, mouseYRotate, rotateSpeed * Time.deltaTime);
     }
 
     void CameraMove()
@@ -112,9 +126,9 @@ public class MoveScript : MonoBehaviour
 
         mCamera.transform.LookAt(transform);
 
-        Vector3 currentAngles = mCamera.transform.rotation.eulerAngles;
+        Vector3 curAngles = mCamera.transform.rotation.eulerAngles;
 
-        mCamera.transform.rotation = Quaternion.Euler(20, currentAngles.y, currentAngles.z);
+        mCamera.transform.rotation = Quaternion.Euler(20, curAngles.y, curAngles.z);
     }
 
     void Jump()

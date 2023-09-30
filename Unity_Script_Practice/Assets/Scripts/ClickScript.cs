@@ -4,20 +4,34 @@ using UnityEngine;
 
 public class ClickScript : MonoBehaviour
 {
+    private MoveScript moveScript;
+
     public float cNum;
+    public float speed;
+
+    private bool ObjCarrying = false;
+    private GameObject CarriedObj;
+    private Vector3 lastMousePos;
 
     public GameObject google;
 
+    void Start()
+    {
+        moveScript = GameObject.Find("Player").GetComponent<MoveScript>();
+
+        speed = 1.0f;
+    }
+
     void Update()
     {
-        if(cNum == 1)
+        if (cNum == 1)
         {
-
+            viewRotate();
         }
 
         if (cNum == 2)
         {
-
+            objCatch();
         }
 
         if (cNum == 3)
@@ -28,12 +42,77 @@ public class ClickScript : MonoBehaviour
 
     private void viewRotate()
     {
+        if (Input.GetMouseButton(1))
+        {
+            moveScript.isCameraFixed = false;
 
+            float mouseX = Input.GetAxis("Mouse X") * speed;
+            float mouseY = Input.GetAxis("Mouse Y") * speed;
+
+            Camera.main.transform.Rotate(Vector3.up, mouseX, Space.World);
+
+            Camera.main.transform.Rotate(Vector3.right, -mouseY, Space.Self);
+        }
+        else
+        {
+            moveScript.isCameraFixed = true;
+        }
     }
 
     private void objCatch()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
+            int layerMask = ~(1 << LayerMask.NameToLayer("Wall"));
+
+            if (!ObjCarrying)
+            {
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
+                {
+                    if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Obj"))
+                    {
+                        ObjCarrying = true;
+                        CarriedObj = hit.transform.gameObject;
+                        CarriedObj.GetComponent<Rigidbody>().isKinematic = true;
+                        lastMousePos = Input.mousePosition;
+                    }
+                }
+            }
+            else
+            {
+                ObjCarrying = false;
+                CarriedObj.GetComponent<Rigidbody>().isKinematic = false;
+                CarriedObj = null;
+            }
+        }
+
+        if (ObjCarrying)
+        {
+            Vector3 mouseMovePos = Input.mousePosition - lastMousePos;
+            Vector3 xyMoveObjPos =
+                Camera.main.transform.right * mouseMovePos.x +
+                Camera.main.transform.up * mouseMovePos.y;
+
+            float objMoveDistance =
+                xyMoveObjPos.magnitude *
+                Vector3.Distance(Camera.main.transform.position, CarriedObj.transform.position) / 600f;
+
+            xyMoveObjPos.Normalize();
+            xyMoveObjPos *= objMoveDistance;
+
+            float mouseScrollMove = Input.GetAxis("Mouse ScrollWheel");
+
+            float mouseScrollSpd = 5f;
+
+            Vector3 verticalMove = Vector3.forward * mouseScrollMove * mouseScrollSpd;
+
+            CarriedObj.transform.position += xyMoveObjPos + verticalMove;
+
+            lastMousePos = Input.mousePosition;
+        }
     }
 
     private void webOpen()
@@ -45,10 +124,8 @@ public class ClickScript : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                // Check if the clicked object is "google"
                 if (hit.transform.gameObject == google)
                 {
-                    // Open google.com in the default web browser
                     Application.OpenURL("https://www.google.com");
                 }
             }
