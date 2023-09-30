@@ -6,6 +6,7 @@ using UnityEngine;
 public class MenuButton : MonoBehaviour
 {
     private MoveScript mScript;
+    private ClickScript cScript;
 
     public GameObject menuTab;
     public GameObject moveTab;
@@ -17,6 +18,7 @@ public class MenuButton : MonoBehaviour
     void Start()
     {
         mScript = GameObject.Find("Player").GetComponent<MoveScript>();
+        cScript = GameObject.Find("Manager").GetComponent<ClickScript>();
     }
 
     public void MenuBt()
@@ -77,10 +79,14 @@ public class MenuButton : MonoBehaviour
     }
 
 
-    //---------------------------------
+    //Move ---------------------------------
     public void MoveBtStart()
     {
         mScript.mNum = 1;
+    }
+    public void ClickMoveBtStart()
+    {
+        mScript.mNum = 1.5f;
     }
     public void JumpBtStart()
     {
@@ -92,7 +98,22 @@ public class MenuButton : MonoBehaviour
     }
     public void MouseRoteStart()
     {
-        mScript.mNum = 4;
+        mScript.mNum = 3.5f;
     }
 
+    //Click ---------------------------------
+
+    public void ViewRoteBt()
+    {
+        cScript.cNum = 1;
+    }
+
+    public void ObjCatchBt()
+    {
+        cScript.cNum = 2; 
+    }
+    public void WebOpenBt()
+    {
+        cScript.cNum = 3;
+    }
 }

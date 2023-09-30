@@ -14,7 +14,7 @@ public class MoveScript : MonoBehaviour
     public GameObject mCamera;
     public Vector3 offset;
 
-    public int mNum;
+    public float mNum;
 
     public float moveSpeed = 5f;
     public float jumpForce = 6f;
@@ -52,12 +52,13 @@ public class MoveScript : MonoBehaviour
                 {
                     Rotate();
                 }
-                else if (mNum == 4)
+                else if (mNum == 3.5)
                 {
                     MouseRotate();
                 }
             }
         }
+
     }
 
     private void GetInput()
