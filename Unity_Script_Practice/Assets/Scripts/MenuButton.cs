@@ -7,11 +7,13 @@ public class MenuButton : MonoBehaviour
 {
     private MoveScript mScript;
     private ClickScript cScript;
+    private PotalScript pScript;
 
     public GameObject menuTab;
     public GameObject moveTab;
     public GameObject clickTab;
     public GameObject objTab;
+    public GameObject potalTab;
 
     public GameObject explanation;
 
@@ -19,6 +21,7 @@ public class MenuButton : MonoBehaviour
     {
         mScript = GameObject.Find("Player").GetComponent<MoveScript>();
         cScript = GameObject.Find("Manager").GetComponent<ClickScript>();
+        pScript = GameObject.Find("Manager").GetComponent<PotalScript>();
     }
 
     public void MenuBt()
@@ -30,7 +33,7 @@ public class MenuButton : MonoBehaviour
     }
     public void MoveBt()
     {
-        if (clickTab != null && clickTab.activeSelf || objTab != null && objTab.activeSelf)
+        if (clickTab != null && clickTab.activeSelf || objTab != null && objTab.activeSelf || potalTab != null && potalTab.activeSelf)
         {
             clickTab.SetActive(false);
             objTab.SetActive(false);
@@ -44,7 +47,7 @@ public class MenuButton : MonoBehaviour
 
     public void ClickBt()
     {
-        if (moveTab != null && moveTab.activeSelf || objTab != null && objTab.activeSelf)
+        if (moveTab != null && moveTab.activeSelf || objTab != null && objTab.activeSelf || potalTab != null && potalTab.activeSelf)
         {
             moveTab.SetActive(false);
             objTab.SetActive(false);
@@ -58,7 +61,7 @@ public class MenuButton : MonoBehaviour
 
     public void ObjectBt()
     {
-        if (moveTab != null && moveTab.activeSelf || clickTab != null && clickTab.activeSelf)
+        if (moveTab != null && moveTab.activeSelf || clickTab != null && clickTab.activeSelf || potalTab != null && potalTab.activeSelf)
         {
             moveTab.SetActive(false);
             clickTab.SetActive(false);
@@ -67,6 +70,20 @@ public class MenuButton : MonoBehaviour
         if (objTab != null)
         {
             objTab.SetActive(!objTab.activeSelf);
+        }
+    }
+
+    public void PotalBt()
+    {
+        if (moveTab != null && moveTab.activeSelf || clickTab != null && clickTab.activeSelf || objTab != null && objTab.activeSelf)
+        {
+            moveTab.SetActive(false);
+            clickTab.SetActive(false);
+        }
+
+        if (potalTab != null)
+        {
+            potalTab.SetActive(!potalTab.activeSelf);
         }
     }
 
@@ -115,5 +132,17 @@ public class MenuButton : MonoBehaviour
     public void WebOpenBt()
     {
         cScript.cNum = 3;
+    }
+
+    //Potal ---------------------------------
+
+    public void ActBt()
+    {
+        pScript.pNum = 1;
+    }
+
+    public void DisBit()
+    {
+        pScript.pNum = 2;
     }
 }
