@@ -8,20 +8,41 @@ public class MenuButton : MonoBehaviour
     private MoveScript mScript;
     private ClickScript cScript;
     private PotalScript pScript;
+    private CameraScript caScript;
+    private UIScript uScript;
 
     public GameObject menuTab;
     public GameObject moveTab;
     public GameObject clickTab;
+    public GameObject cameraTab;
+    public GameObject uiTab;
     public GameObject objTab;
     public GameObject potalTab;
 
     public GameObject explanation;
+
+    public GameObject[] allTabs;
 
     void Start()
     {
         mScript = GameObject.Find("Player").GetComponent<MoveScript>();
         cScript = GameObject.Find("Manager").GetComponent<ClickScript>();
         pScript = GameObject.Find("Manager").GetComponent<PotalScript>();
+        caScript = GameObject.Find("Manager").GetComponent<CameraScript>();
+        uScript = GameObject.Find("Manager").GetComponent<UIScript>();
+
+        allTabs = new GameObject[] { moveTab, clickTab, cameraTab, uiTab, objTab, potalTab };
+    }
+
+    public void ToggleSingleTab(GameObject target)
+    {
+        foreach (var tab in allTabs)
+        {
+            if (tab != null)
+            {
+                tab.SetActive(tab == target && !tab.activeSelf);
+            }
+        }
     }
 
     public void MenuBt()
@@ -31,60 +52,35 @@ public class MenuButton : MonoBehaviour
             menuTab.SetActive(!menuTab.activeSelf);
         }
     }
+
     public void MoveBt()
     {
-        if (clickTab != null && clickTab.activeSelf || objTab != null && objTab.activeSelf || potalTab != null && potalTab.activeSelf)
-        {
-            clickTab.SetActive(false);
-            objTab.SetActive(false);
-        }
-
-        if (moveTab != null)
-        {
-            moveTab.SetActive(!moveTab.activeSelf);
-        }
+        ToggleSingleTab(moveTab);
     }
 
     public void ClickBt()
     {
-        if (moveTab != null && moveTab.activeSelf || objTab != null && objTab.activeSelf || potalTab != null && potalTab.activeSelf)
-        {
-            moveTab.SetActive(false);
-            objTab.SetActive(false);
-        }
+        ToggleSingleTab(clickTab);
+    }
 
-        if (clickTab != null)
-        {
-            clickTab.SetActive(!clickTab.activeSelf);
-        }
+    public void CameraBt()
+    {
+        ToggleSingleTab(cameraTab);
+    }
+
+    public void UIBt()
+    {
+        ToggleSingleTab(uiTab);
     }
 
     public void ObjectBt()
     {
-        if (moveTab != null && moveTab.activeSelf || clickTab != null && clickTab.activeSelf || potalTab != null && potalTab.activeSelf)
-        {
-            moveTab.SetActive(false);
-            clickTab.SetActive(false);
-        }
-
-        if (objTab != null)
-        {
-            objTab.SetActive(!objTab.activeSelf);
-        }
+        ToggleSingleTab(objTab);
     }
 
     public void PotalBt()
     {
-        if (moveTab != null && moveTab.activeSelf || clickTab != null && clickTab.activeSelf || objTab != null && objTab.activeSelf)
-        {
-            moveTab.SetActive(false);
-            clickTab.SetActive(false);
-        }
-
-        if (potalTab != null)
-        {
-            potalTab.SetActive(!potalTab.activeSelf);
-        }
+        ToggleSingleTab(potalTab);
     }
 
     public void ExBt()
@@ -127,7 +123,7 @@ public class MenuButton : MonoBehaviour
 
     public void ObjCatchBt()
     {
-        cScript.cNum = 2; 
+        cScript.cNum = 2;
     }
     public void WebOpenBt()
     {
@@ -141,8 +137,47 @@ public class MenuButton : MonoBehaviour
         pScript.pNum = 1;
     }
 
-    public void DisBit()
+    public void DisBt()
     {
         pScript.pNum = 2;
     }
+
+    //Camera ---------------------------------
+
+    public void FristBt()
+    {
+        caScript.caNum = 1;
+    }
+    public void ThirdBt()
+    {
+        caScript.caNum = 0;
+    }
+
+    public void TopBt()
+    {
+        caScript.caNum = 2;
+    }
+
+
+    //UI ---------------------------------
+
+    public void InputBt()
+    {
+       uScript.uNum = 1;
+    }
+
+    public void CountBt()
+    {
+        uScript.uNum = 2;
+    }
+    public void TimeBt()
+    {
+        uScript.uNum = 3;
+    }
+
+    public void MapBt()
+    {
+        uScript.uNum = 4;
+    }
+
 }
