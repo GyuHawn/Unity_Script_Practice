@@ -9,7 +9,8 @@ public class CameraScript : MonoBehaviour
     public float caNum;
 
     public GameObject mCamera;
-    public GameObject topCamera;
+    public GameObject topBCamera;
+    public GameObject topWCamera;
     public GameObject currentCamera;
     public Vector3 mainOffset;
     public Vector3 firstOffset;
@@ -18,21 +19,34 @@ public class CameraScript : MonoBehaviour
     private void Start()
     {
         currentCamera = mCamera;
+        mScript = GameObject.Find("Player").GetComponent<MoveScript>();
     }
 
     void Update()
     {
-        if(caNum != 2)
+        if (caNum != 2)
         {
             currentCamera = mCamera;
             mCamera.SetActive(true);
-            topCamera.SetActive(false);
+            topBCamera.SetActive(false);
+            topWCamera.SetActive(false);
         }
         else
         {
-            currentCamera = topCamera;
-            mCamera.SetActive(false);
-            topCamera.SetActive(true);
+            if (!mScript.moveMap)
+            {
+                currentCamera = topBCamera;
+                mCamera.SetActive(false);
+                topBCamera.SetActive(true);
+                topWCamera.SetActive(false);
+            }
+            else if (mScript.moveMap)
+            {
+                currentCamera = topWCamera;
+                mCamera.SetActive(false);
+                topBCamera.SetActive(false);
+                topWCamera.SetActive(true);
+            }
         }
     }
 }

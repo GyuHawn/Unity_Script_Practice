@@ -32,6 +32,8 @@ public class MoveScript : MonoBehaviour
 
     public bool isCameraFixed = true;
 
+    public bool moveMap;
+
     void Awake()
     {
         anim = GetComponentInChildren<Animator>();
@@ -46,6 +48,8 @@ public class MoveScript : MonoBehaviour
         rotateSpeed = 200f;
 
         mouseSensitivity = 700f;
+
+        moveMap = false;
     }
 
     void Update()

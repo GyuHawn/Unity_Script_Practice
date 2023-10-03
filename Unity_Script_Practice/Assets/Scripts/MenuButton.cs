@@ -27,7 +27,7 @@ public class MenuButton : MonoBehaviour
     {
         mScript = GameObject.Find("Player").GetComponent<MoveScript>();
         cScript = GameObject.Find("Manager").GetComponent<ClickScript>();
-        pScript = GameObject.Find("Manager").GetComponent<PotalScript>();
+        pScript = GameObject.Find("WPotal").GetComponent<PotalScript>();
         caScript = GameObject.Find("Manager").GetComponent<CameraScript>();
         uScript = GameObject.Find("Manager").GetComponent<UIScript>();
 
@@ -173,11 +173,6 @@ public class MenuButton : MonoBehaviour
     public void TimeBt()
     {
         uScript.uNum = 3;
-    }
-
-    public void MapBt()
-    {
-        uScript.uNum = 4;
     }
 
 }
