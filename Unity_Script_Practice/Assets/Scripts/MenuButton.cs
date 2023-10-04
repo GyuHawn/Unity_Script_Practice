@@ -10,6 +10,7 @@ public class MenuButton : MonoBehaviour
     private PotalScript pScript;
     private CameraScript caScript;
     private UIScript uScript;
+    private WorkTextScript wtScript;
 
     public GameObject menuTab;
     public GameObject moveTab;
@@ -30,6 +31,7 @@ public class MenuButton : MonoBehaviour
         pScript = GameObject.Find("WPotal").GetComponent<PotalScript>();
         caScript = GameObject.Find("Manager").GetComponent<CameraScript>();
         uScript = GameObject.Find("Manager").GetComponent<UIScript>();
+        wtScript = GameObject.Find("Manager").GetComponent<WorkTextScript>();
 
         allTabs = new GameObject[] { moveTab, clickTab, cameraTab, uiTab, objTab, potalTab };
     }
@@ -96,22 +98,22 @@ public class MenuButton : MonoBehaviour
     public void MoveBtStart()
     {
         mScript.mNum = 1;
-    }
-    public void ClickMoveBtStart()
-    {
-        mScript.mNum = 1.5f;
+        wtScript.SetText(wtScript.mText);
     }
     public void JumpBtStart()
     {
         mScript.mNum = 2;
+        wtScript.SetText(wtScript.jText);
     }
     public void TurnBtStart()
     {
         mScript.mNum = 3;
+        wtScript.SetText(wtScript.tText);
     }
     public void MouseRoteStart()
     {
         mScript.mNum = 3.5f;
+        wtScript.SetText(wtScript.mtText);
     }
 
     //Click ---------------------------------
@@ -119,15 +121,18 @@ public class MenuButton : MonoBehaviour
     public void ViewRoteBt()
     {
         cScript.cNum = 1;
+        wtScript.SetText(wtScript.mvText);
     }
 
     public void ObjCatchBt()
     {
         cScript.cNum = 2;
+        wtScript.SetText(wtScript.cText);
     }
     public void WebOpenBt()
     {
         cScript.cNum = 3;
+        wtScript.SetText(wtScript.wText);
     }
 
     //Potal ---------------------------------
@@ -135,11 +140,13 @@ public class MenuButton : MonoBehaviour
     public void ActBt()
     {
         pScript.pNum = 1;
+        wtScript.SetText(wtScript.acText);
     }
 
     public void DisBt()
     {
         pScript.pNum = 2;
+        wtScript.SetText(wtScript.diText);
     }
 
     //Camera ---------------------------------
@@ -147,15 +154,18 @@ public class MenuButton : MonoBehaviour
     public void FristBt()
     {
         caScript.caNum = 1;
+        wtScript.SetText(wtScript.fiText);
     }
     public void ThirdBt()
     {
         caScript.caNum = 0;
+        wtScript.SetText(wtScript.thText);
     }
 
     public void TopBt()
     {
         caScript.caNum = 2;
+        wtScript.SetText(wtScript.topText);
     }
 
 
@@ -164,15 +174,18 @@ public class MenuButton : MonoBehaviour
     public void InputBt()
     {
        uScript.uNum = 1;
+       wtScript.SetText(wtScript.inText);
     }
 
     public void CountBt()
     {
         uScript.uNum = 2;
+        wtScript.SetText(wtScript.countText);
     }
     public void TimeBt()
     {
         uScript.uNum = 3;
+        wtScript.SetText(wtScript.ctText);
     }
 
 }

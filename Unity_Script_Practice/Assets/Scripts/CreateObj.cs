@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class CreateObj : MonoBehaviour
 {
+    private WorkTextScript wtScript;
+
     public GameObject sobj;
     public GameObject cobj;
+
+    void Start()
+    {
+        wtScript = GameObject.Find("Manager").GetComponent<WorkTextScript>();
+    }
 
     public void CreateSphere()
     {
@@ -15,6 +22,7 @@ public class CreateObj : MonoBehaviour
         }
 
         sobj.SetActive(!sobj.activeSelf);
+        wtScript.SetText(wtScript.sphereText);
     }
 
     public void CreateCube()
@@ -25,5 +33,6 @@ public class CreateObj : MonoBehaviour
         }
 
         cobj.SetActive(!cobj.activeSelf);
+        wtScript.SetText(wtScript.cubeText);
     }
 }
