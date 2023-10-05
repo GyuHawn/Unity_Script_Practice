@@ -6,8 +6,10 @@ public class PotalScript : MonoBehaviour
 {
     private MoveScript mScript;
 
+    // 현재 사용한 버튼
     public float pNum;
 
+    // 포탈 관련 변수
     public GameObject bPotal;
     public GameObject wPotal;
 

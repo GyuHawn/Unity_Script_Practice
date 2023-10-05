@@ -6,12 +6,15 @@ public class CameraScript : MonoBehaviour
 {
     private MoveScript mScript;
 
+    // 현재 선택한 버튼 
     public float caNum;
 
+    // 카메라 관련 변수
     public GameObject mCamera;
     public GameObject topBCamera;
     public GameObject topWCamera;
     public GameObject currentCamera;
+
     public Vector3 mainOffset;
     public Vector3 firstOffset;
     public Vector3 topOffset;

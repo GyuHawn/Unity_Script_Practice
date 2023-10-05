@@ -6,6 +6,7 @@ public class CreateObj : MonoBehaviour
 {
     private WorkTextScript wtScript;
 
+    // 오브젝트 관련 변수
     public GameObject sobj;
     public GameObject cobj;
 

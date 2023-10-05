@@ -7,32 +7,33 @@ public class MoveScript : MonoBehaviour
 {
     private CameraScript caScript;
 
-    float hAxis;
-    float vAxis;
-
-    bool jDown;
-    private bool isJump = false;
-
+    // 현재 선택한 버튼
     public float mNum;
 
+    // 이동 관련 변수
     public float moveSpeed;
-    public float jumpForce;
-    public float rotateSpeed;
-
+    float hAxis;
+    float vAxis;
     private Vector3 nomalMoveVec;
     private Vector3 topViewMoveVec;
 
-    private Animator anim;
-    private Rigidbody rigid;
+    // 점프 관련 변수
+    public float jumpForce;
+    bool jDown;
+    private bool isJump = false;
 
-    // 마우스 회전
+    // 회전 관련 변수
+    public float rotateSpeed;
+    // 마우스 회전 관련 변수
     float xRotation = 0f;
     float yRotation;
     public float mouseSensitivity;
 
-    public bool isCameraFixed = true;
-
+    // 맵 이동 유무
     public bool moveMap;
+
+    private Animator anim;
+    private Rigidbody rigid;
 
     void Awake()
     {
@@ -162,10 +163,8 @@ public class MoveScript : MonoBehaviour
         }
         else if (caScript.caNum == 1)
         {
-            // Move the camera to the player's position
             caScript.mCamera.transform.position = transform.position + transform.rotation * caScript.firstOffset;
 
-            // Set the camera's rotation to match the player's rotation
             Vector3 playerRotation = transform.eulerAngles;
             caScript.mCamera.transform.rotation = Quaternion.Euler(playerRotation.x, playerRotation.y, playerRotation.z);
         }

@@ -5,14 +5,18 @@ using UnityEngine;
 public class ClickScript : MonoBehaviour
 {
     private MoveScript moveScript;
-
+    // 현재 선택한 버튼
     public float cNum;
+
+    // 마우스 둘러보기 관련 변수
     public float speed;
 
+    // 오브젝트 잡기 관련 변수
     private bool ObjCarrying = false;
     private GameObject CarriedObj;
     private Vector3 lastMousePos;
 
+    // 웹사이트 관련 변수
     public GameObject google;
 
     void Start()

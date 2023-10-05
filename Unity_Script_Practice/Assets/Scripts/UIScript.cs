@@ -7,22 +7,24 @@ using TMPro;
 
 public class UIScript : MonoBehaviour
 {
+    // 현재 사용한 버튼
     public float uNum;
 
+    // 현재 시간 관련 변수
     public GameObject currentTime;
-    public GameObject countDown;
-    public GameObject textInput;
-
     public TMP_Text currentTimeText;
-    public TMP_Text countDowntext;
 
+    // 글 입력 관련 변수
+    public GameObject textInput;
     public TMP_InputField chatInput;
     public TMP_Text viewChat;
 
+    // 카운드 다운 관련 변수
+    public GameObject countDown;
+    public TMP_Text countDowntext;
     private Button plus;
     private Button minus;
     private Button countStart;
-
     private TimeSpan countdownTime = TimeSpan.Zero;
     private bool countdownStarted = false;
 
