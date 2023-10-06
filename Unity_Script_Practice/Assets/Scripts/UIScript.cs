@@ -38,6 +38,7 @@ public class UIScript : MonoBehaviour
     void Update()
     {
         currentTimeText.text = DateTime.Now.ToString("HH : mm : ss");
+
         if (countdownStarted && countdownTime > TimeSpan.Zero)
         {
             countdownTime -= TimeSpan.FromSeconds(Time.deltaTime);
@@ -87,6 +88,7 @@ public class UIScript : MonoBehaviour
     {
         countDowntext.text = string.Format("{0:D2}:{1:D2}", countdownTime.Minutes, countdownTime.Seconds);
     }
+
 
     public void SubmitChat(string chatMessage)
     {

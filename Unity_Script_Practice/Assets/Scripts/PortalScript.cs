@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PotalScript : MonoBehaviour
+public class PortalScript : MonoBehaviour
 {
     private MoveScript mScript;
 

@@ -24,6 +24,7 @@ public class MoveScript : MonoBehaviour
 
     // 회전 관련 변수
     public float rotateSpeed;
+    public bool isCameraFixed;
     // 마우스 회전 관련 변수
     float xRotation = 0f;
     float yRotation;
@@ -51,6 +52,8 @@ public class MoveScript : MonoBehaviour
         mouseSensitivity = 700f;
 
         moveMap = false;
+
+        isCameraFixed = true;
     }
 
     void Update()
@@ -110,7 +113,7 @@ public class MoveScript : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
         yRotation += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
     }
-
+    
     private void Move()
     {
         if (caScript.caNum != 2)

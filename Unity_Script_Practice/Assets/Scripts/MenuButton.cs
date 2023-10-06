@@ -7,7 +7,7 @@ public class MenuButton : MonoBehaviour
 {
     private MoveScript mScript;
     private ClickScript cScript;
-    private PotalScript pScript;
+    private PortalScript pScript;
     private CameraScript caScript;
     private UIScript uScript;
     private WorkTextScript wtScript;
@@ -28,7 +28,7 @@ public class MenuButton : MonoBehaviour
     {
         mScript = GameObject.Find("Player").GetComponent<MoveScript>();
         cScript = GameObject.Find("Manager").GetComponent<ClickScript>();
-        pScript = GameObject.Find("WPotal").GetComponent<PotalScript>();
+        pScript = GameObject.Find("WPotal").GetComponent<PortalScript>();
         caScript = GameObject.Find("Manager").GetComponent<CameraScript>();
         uScript = GameObject.Find("Manager").GetComponent<UIScript>();
         wtScript = GameObject.Find("Manager").GetComponent<WorkTextScript>();

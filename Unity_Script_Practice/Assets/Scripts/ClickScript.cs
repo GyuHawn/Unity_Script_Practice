@@ -32,13 +32,11 @@ public class ClickScript : MonoBehaviour
         {
             viewRotate();
         }
-
-        if (cNum == 2)
+        else if (cNum == 2)
         {
             objCatch();
         }
-
-        if (cNum == 3)
+        else if (cNum == 3)
         {
             webOpen();
         }
