@@ -11,6 +11,7 @@ public class MenuButton : MonoBehaviour
     private CameraScript caScript;
     private UIScript uScript;
     private WorkTextScript wtScript;
+    private ExScirpt eScript;
 
     public GameObject menuTab;
     public GameObject moveTab;
@@ -32,6 +33,7 @@ public class MenuButton : MonoBehaviour
         caScript = GameObject.Find("Manager").GetComponent<CameraScript>();
         uScript = GameObject.Find("Manager").GetComponent<UIScript>();
         wtScript = GameObject.Find("Manager").GetComponent<WorkTextScript>();
+        eScript = GameObject.Find("Manager").GetComponent<ExScirpt>();
 
         allTabs = new GameObject[] { moveTab, clickTab, cameraTab, uiTab, objTab, potalTab };
     }
@@ -80,7 +82,7 @@ public class MenuButton : MonoBehaviour
         ToggleSingleTab(objTab);
     }
 
-    public void PotalBt()
+    public void PortalBt()
     {
         ToggleSingleTab(potalTab);
     }
@@ -188,4 +190,31 @@ public class MenuButton : MonoBehaviour
         wtScript.SetText(wtScript.ctText);
     }
 
+    //Ex ---------------------------------
+
+    public void MoveEX()
+    {
+        eScript.eNum = 1;
+    }
+
+    public void ClickEX()
+    {
+        eScript.eNum = 2;
+    }
+    public void CameraEX()
+    {
+        eScript.eNum = 3;
+    }
+    public void UIEX()
+    {
+        eScript.eNum = 4;
+    }
+    public void PortalEX()
+    {
+        eScript.eNum = 5;
+    }
+    public void ObjEX()
+    {
+        eScript.eNum = 6;
+    }
 }
